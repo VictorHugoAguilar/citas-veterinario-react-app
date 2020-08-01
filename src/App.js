@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
 // Importar el componente personalizado
 import Formulario from './Components/Formulario';
 import Cita from './Components/Cita';
 
 function App() {
-
   // Citas en local storage
   let citasIniciales = JSON.parse(localStorage.getItem('citas'));
   if(!citasIniciales){
     citasIniciales = [];
   }
-
   // Array de todas las citas creadas
   const [ citas, setCitas] = useState(citasIniciales);
-
   // use useEffect para realizar ciertas operaciones cuando el state cambia
   useEffect( () => {
     if(citasIniciales){
@@ -22,8 +18,7 @@ function App() {
     }else{
       localStorage.setItem('citas', JSON.stringify([]));
     }
-  }, [citas] );
-
+  }, [citasIniciales] );
   // Función que elimina una cita
   const deleteCita = (id) => {
     console.log(id);
@@ -40,10 +35,8 @@ function App() {
     ]);
     console.log(citas);
   }
-
   // Mensaje de citas condicionales
   const titulo = citas.length === 0 ? 'No hay citas' : 'Administar Citas';
-
   return (
     <div className="App">
       <h1>Administración de Pacientes</h1>
@@ -69,5 +62,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

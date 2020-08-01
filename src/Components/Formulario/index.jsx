@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react';
+import PropType from 'prop-types';
 // importamos el generador de id
 import { uuid } from 'uuidv4';
-
+//  Component Functional
 const Formulario = ({addNewCita }) => {
     // crear state de citas
     const [cita, setCita] = useState({
@@ -25,7 +26,6 @@ const Formulario = ({addNewCita }) => {
             [e.target.name] : e.target.value
         });
     }
-
     // Añadimo la cita cuando seleccionamos añadir 
     const addCita = (e) => {
         console.log('ADD_CITA');
@@ -57,10 +57,8 @@ const Formulario = ({addNewCita }) => {
             sintomas: ''
         });
     }
-
     // Extraer los valores del useState
     const { mascota, propietario, fecha, hora, sintomas } = cita; 
-
     return (
         <Fragment>
             <h2>Crear formulario</h2>
@@ -123,5 +121,7 @@ const Formulario = ({addNewCita }) => {
         </Fragment>
     );
 }
-
+Formulario.prototype = {
+    addNewCita: PropType.func.isRequired
+}
 export default Formulario;

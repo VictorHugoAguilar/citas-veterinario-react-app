@@ -1,9 +1,9 @@
 import React from 'react';
-
+import PropType from 'prop-types';
+//  Component Functional
 const Cita = ({cita, deleteCita}) => {
  // Extraer los valores del useState
  const { id, mascota, propietario, fecha, hora, sintomas } = cita; 
-
     return (
         <div className="cita">
             <p>Mascota: <span>{mascota}</span></p>
@@ -19,4 +19,8 @@ const Cita = ({cita, deleteCita}) => {
         </div>
     );
 } 
+Cita.prototype = {
+    deleteCita: PropType.func.isRequired,
+    cita: PropType.object.isRequired
+}
 export default Cita;
