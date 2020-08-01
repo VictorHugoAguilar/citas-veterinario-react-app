@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 
 // Importar el componente personalizado
 import Formulario from './Components/Formulario';
+import Cita from './Components/Cita';
 
 function App() {
   // Array de todas las citas creadas
   const [ citas, setCitas] = useState([]);
+
+  // Función que elimina una cita
+  const deleteCita = (id) => {
+    console.log(id);
+    const nuevasCitas = citas.filter(cita => cita.id !== id );
+    setCitas(nuevasCitas);
+  }
 
   // Función que añade nuevas citas al array
   const addNewCita = (cita) => {
@@ -18,6 +26,9 @@ function App() {
     console.log(citas);
   }
 
+  // Mensaje de citas condicionales
+  const titulo = citas.length === 0 ? 'No hay citas' : 'Administar Citas';
+
   return (
     <div className="App">
       <h1>Administración de Pacientes</h1>
@@ -27,7 +38,18 @@ function App() {
             <Formulario addNewCita={addNewCita}/>
           </div> 
           <div className="one-half column">
+        
+          <h2>{titulo}</h2>
 
+            {
+              citas.map( cita => (
+                <Cita 
+                  key={cita.id} 
+                  cita={cita} 
+                  deleteCita = {deleteCita}
+                  />
+              ))
+            }
           </div>
         </div>
       </div>

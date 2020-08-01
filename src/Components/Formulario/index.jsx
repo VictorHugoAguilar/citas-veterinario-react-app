@@ -1,11 +1,8 @@
 import React, { Fragment, useState } from 'react';
 // importamos el generador de id
-import uuid from 'uuid/v4';
+import { uuid } from 'uuidv4';
 
 const Formulario = ({addNewCita }) => {
-
-    
-
     // crear state de citas
     const [cita, setCita] = useState({
         id: '',
@@ -23,7 +20,6 @@ const Formulario = ({addNewCita }) => {
         console.log('ADD_TEXT_CITA');
         console.log(e.target.name);
         console.log(e.target.value);
-
         setCita({
             ...cita,
             [e.target.name] : e.target.value
