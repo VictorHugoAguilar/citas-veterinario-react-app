@@ -11,10 +11,12 @@ const Formulario = () => {
         hora : '',
         sintomas: ''
     });
+    // creamos state para validar
+    const [error, setError ] = useState(false);  
 
     // Función que se ejecuta cuando cada usuario escribe en el input
-    const addCita = (e) => {
-        console.log('ADD_CITA');
+    const addTextForm = (e) => {
+        console.log('ADD_TEXT_CITA');
         console.log(e.target.name);
         console.log(e.target.value);
 
@@ -24,20 +26,49 @@ const Formulario = () => {
         });
     }
 
+    // Añadimo la cita cuando seleccionamos añadir 
+    const addCita = (e) => {
+        console.log('ADD_CITA');
+        e.preventDefault();
+        // Validar datos
+        if( mascota.trim() === '' || 
+            propietario.trim() === '' ||
+            fecha.trim() === '' || 
+            hora.trim() === '' ||
+            sintomas.trim() === ''
+        ){
+            console.log('hay un error');
+            setError(true);
+            return;
+        }
+        // Asignar un id
+
+        // Crear la cita
+
+        // Reiniciar el form
+    }
+
     // Extraer los valores del useState
     const { mascota, propietario, fecha, hora, sintomas } = cita; 
 
     return (
         <Fragment>
             <h2>Crear formulario</h2>
-            <form>
+            {
+                error ? 
+                <p className="alerta-error"> Todos los campos son obligatorios </p>
+                : null
+            }
+            <form
+                onSubmit={ addCita }
+            >
                 <label>Nombre Mascota</label>
                 <input
                     type="text"
                     name="mascota"
                     className="u-full-width"
                     placeholder="Nombre de mascota"
-                    onChange={ addCita }
+                    onChange={ addTextForm }
                     value = {mascota}
                 />
                 <label>Nombre del dueño</label>
@@ -46,7 +77,7 @@ const Formulario = () => {
                     name="propietario"
                     className="u-full-width"
                     placeholder="Nombre del dueño" 
-                    onChange={ addCita }
+                    onChange={ addTextForm }
                     value = {propietario}
                     />
                 <label>Fecha</label>
@@ -54,7 +85,7 @@ const Formulario = () => {
                     type="date"
                     name="fecha"
                     className="u-full-width"
-                    onChange={ addCita }
+                    onChange={ addTextForm }
                     value = {fecha}
                 />
                 <label>Horo</label>
@@ -62,19 +93,19 @@ const Formulario = () => {
                     type="time"
                     name="hora"
                     className="u-full-width"
-                    onChange={ addCita }
+                    onChange={ addTextForm }
                     value = {hora}
                 />
                 <label>Síntomas</label>
                 <textarea
                     className="u-full-width"
                     name="sintomas"
-                    onChange={ addCita }
+                    onChange={ addTextForm }
                     value = {sintomas}
                 ></textarea>
 
                 <button
-                    type="button"
+                    type="submit"
                     className="u-full-width button-primary"
                 >Agregar Cita</button>
             </form>
