@@ -21,19 +21,19 @@ function App() {
   }, [citasIniciales] );
   // Función que elimina una cita
   const deleteCita = (id) => {
-    console.log(id);
+    // console.log(id);
     const nuevasCitas = citas.filter(cita => cita.id !== id );
     setCitas(nuevasCitas);
   }
   // Función que añade nuevas citas al array
   const addNewCita = (cita) => {
-    console.log('ADD_NEW_CITA');
-    console.log(cita);
+    // console.log('ADD_NEW_CITA');
+    // console.log(cita);
     setCitas([
       ...citas,
       cita
     ]);
-    console.log(citas);
+    // console.log(citas);
   }
   // Mensaje de citas condicionales
   const titulo = citas.length === 0 ? 'No hay citas' : 'Administar Citas';

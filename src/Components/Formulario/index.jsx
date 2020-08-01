@@ -15,12 +15,11 @@ const Formulario = ({addNewCita }) => {
     });
     // creamos state para validar
     const [error, setError ] = useState(false);  
-
     // Función que se ejecuta cuando cada usuario escribe en el input
     const addTextForm = (e) => {
-        console.log('ADD_TEXT_CITA');
-        console.log(e.target.name);
-        console.log(e.target.value);
+        // console.log('ADD_TEXT_CITA');
+        // console.log(e.target.name);
+        // console.log(e.target.value);
         setCita({
             ...cita,
             [e.target.name] : e.target.value
@@ -28,7 +27,7 @@ const Formulario = ({addNewCita }) => {
     }
     // Añadimo la cita cuando seleccionamos añadir 
     const addCita = (e) => {
-        console.log('ADD_CITA');
+        // console.log('ADD_CITA');
         e.preventDefault();
         // Validar datos
         if( mascota.trim() === '' || 
@@ -37,7 +36,7 @@ const Formulario = ({addNewCita }) => {
             hora.trim() === '' ||
             sintomas.trim() === ''
         ){
-            console.log('hay un error');
+            // console.log('hay un error');
             setError(true);
             return;
         }
